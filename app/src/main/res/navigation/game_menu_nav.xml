@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/game_menu"
+    app:startDestination="@id/gameFragment2">
+
+    <fragment
+        android:id="@+id/battleMenuFragment"
+        android:name="com.example.hornley.fragments.battlemenu.BattleMenuFragment"
+        android:label="Battle"
+        tools:layout="@layout/fragment_battle_menu" >
+        <action
+            android:id="@+id/action_battleMenuFragment_to_gameFragment2"
+            app:destination="@id/gameFragment2" />
+        <argument
+            android:name="character"
+            app:argType="com.example.hornley.database.model.Character" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterMenuFragment"
+        android:name="com.example.hornley.fragments.charactermenu.CharacterMenuFragment"
+        android:label="Character"
+        tools:layout="@layout/fragment_character_menu" >
+        <action
+            android:id="@+id/action_characterMenuFragment_to_gameFragment2"
+            app:destination="@id/gameFragment2" />
+        <argument
+            android:name="character"
+            app:argType="com.example.hornley.database.model.Character" />
+        <action
+            android:id="@+id/action_characterMenuFragment_to_inventoryFragment"
+            app:destination="@id/inventoryFragment" />
+        <action
+            android:id="@+id/action_characterMenuFragment_to_useStatsFragment"
+            app:destination="@id/useStatsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/shopMenuFragment"
+        android:name="com.example.hornley.fragments.shopmenu.ShopMenuFragment"
+        android:label="Shop"
+        tools:layout="@layout/fragment_shop_menu" >
+        <action
+            android:id="@+id/action_shopMenuFragment_to_gameFragment2"
+            app:destination="@id/gameFragment2" />
+        <argument
+            android:name="character"
+            app:argType="com.example.hornley.database.model.Character" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameFragment2"
+        android:name="com.example.hornley.fragments.game.GameFragment"
+        android:label="Game"
+        tools:layout="@layout/fragment_game">
+        <action
+            android:id="@+id/action_gameFragment2_to_characterMenuFragment"
+            app:destination="@id/characterMenuFragment" />
+        <action
+            android:id="@+id/action_gameFragment2_to_shopMenuFragment"
+            app:destination="@id/shopMenuFragment" />
+        <action
+            android:id="@+id/action_gameFragment2_to_battleMenuFragment"
+            app:destination="@id/battleMenuFragment" />
+        <argument
+            android:name="x"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/inventoryFragment"
+        android:name="com.example.hornley.fragments.charactermenu.InventoryFragment"
+        android:label="fragment_inventory"
+        tools:layout="@layout/fragment_inventory" >
+        <action
+            android:id="@+id/action_inventoryFragment_to_characterMenuFragment"
+            app:destination="@id/characterMenuFragment" />
+        <argument
+            android:name="character"
+            app:argType="com.example.hornley.database.model.Character" />
+    </fragment>
+    <fragment
+        android:id="@+id/useStatsFragment"
+        android:name="com.example.hornley.fragments.charactermenu.UseStatsFragment"
+        android:label="fragment_use_stats"
+        tools:layout="@layout/fragment_use_stats" >
+        <argument
+            android:name="character"
+            app:argType="com.example.hornley.database.model.Character" />
+        <action
+            android:id="@+id/action_useStatsFragment_to_characterMenuFragment"
+            app:destination="@id/characterMenuFragment" />
+    </fragment>
+</navigation>
