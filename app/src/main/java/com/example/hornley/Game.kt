@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.hornley.database.model.Character
 import com.example.hornley.databinding.ActivityGameBinding
 
@@ -24,20 +25,7 @@ class Game : AppCompatActivity() {
         val bundle = Bundle()
         bundle.putInt("x", character.id)
         navController.setGraph(R.navigation.game_menu_nav, bundle)
-//        setupActionBarWithNavController(navController)
-
-//        val charID: Int = character.id
-//        val fragment = GameFragment()
-//        fragment.arguments = bundle
-//        supportFragmentManager.beginTransaction().add(R.id.gameFragment, fragment).commit()
-
-        /*
-        LAYOUT
-        > Change the layout design to a menu
-        > Character
-        > Shop
-        > Battle
-        */
+        setupActionBarWithNavController(navController)
 
     }
 

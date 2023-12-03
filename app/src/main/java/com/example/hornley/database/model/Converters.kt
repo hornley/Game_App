@@ -1,6 +1,8 @@
 package com.example.hornley.database.model
 
 import androidx.room.TypeConverter
+import com.example.hornley.database.model.world.Area
+import com.example.hornley.database.model.world.Country
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

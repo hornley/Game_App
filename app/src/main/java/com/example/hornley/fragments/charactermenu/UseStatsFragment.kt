@@ -1,5 +1,6 @@
 package com.example.hornley.fragments.charactermenu
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
@@ -26,12 +27,12 @@ class UseStatsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentUseStatsBinding.inflate(inflater, container, false)
         mUserViewModel = ViewModelProvider(this).get(CharacterViewModel::class.java)
         val character = args.character
-        activity?.setTitle(character.name)
+        activity?.title = character.name
         points = character.statPoint
         maxpoints = character.statPoint
 
@@ -39,6 +40,7 @@ class UseStatsFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     fun buttonBindings(character: Character) {
         binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
         binding.textVit.text = "VIT: ${character.stats[0]}"
@@ -52,8 +54,8 @@ class UseStatsFragment : Fragment() {
             if (points >= 1) {
                 character.stats[0]++
                 binding.textVit.text = "VIT: ${character.stats[0]}"
-                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
                 points--
+                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
             } else {
                 pointsExceed()
             }
@@ -62,8 +64,8 @@ class UseStatsFragment : Fragment() {
             if (points >= 1) {
                 character.stats[1]++
                 binding.textStr.text = "STR: ${character.stats[1]}"
-                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
                 points--
+                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
             } else {
                 pointsExceed()
             }
@@ -72,8 +74,8 @@ class UseStatsFragment : Fragment() {
             if (points >= 1) {
                 character.stats[2]++
                 binding.textInt.text = "INT: ${character.stats[2]}"
-                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
                 points--
+                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
             } else {
                 pointsExceed()
             }
@@ -82,8 +84,8 @@ class UseStatsFragment : Fragment() {
             if (points >= 1) {
                 character.stats[3]++
                 binding.textAgi.text = "AGI: ${character.stats[3]}"
-                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
                 points--
+                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
             } else {
                 pointsExceed()
             }
@@ -92,8 +94,8 @@ class UseStatsFragment : Fragment() {
             if (points >= 1) {
                 character.stats[4]++
                 binding.textDex.text = "DEX: ${character.stats[4]}"
-                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
                 points--
+                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
             } else {
                 pointsExceed()
             }
@@ -102,8 +104,8 @@ class UseStatsFragment : Fragment() {
             if (points >= 1) {
                 character.stats[5]++
                 binding.textWis.text = "WIS: ${character.stats[5]}"
-                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
                 points--
+                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
             } else {
                 pointsExceed()
             }
@@ -112,8 +114,8 @@ class UseStatsFragment : Fragment() {
             if (points >= 1) {
                 character.stats[6]++
                 binding.textLuck.text = "LUCK: ${character.stats[6]}"
-                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
                 points--
+                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
             } else {
                 pointsExceed()
             }
@@ -122,8 +124,8 @@ class UseStatsFragment : Fragment() {
             if (points < maxpoints) {
                 character.stats[0]--
                 binding.textVit.text = "VIT: ${character.stats[0]}"
-                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
                 points++
+                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
             } else {
                 maxpoints(maxpoints)
             }
@@ -132,8 +134,8 @@ class UseStatsFragment : Fragment() {
             if (points < maxpoints) {
                 character.stats[1]--
                 binding.textStr.text = "STR: ${character.stats[1]}"
-                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
                 points++
+                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
             } else {
                 maxpoints(maxpoints)
             }
@@ -142,8 +144,8 @@ class UseStatsFragment : Fragment() {
             if (points < maxpoints) {
                 character.stats[2]--
                 binding.textInt.text = "INT: ${character.stats[2]}"
-                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
                 points++
+                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
             } else {
                 maxpoints(maxpoints)
             }
@@ -152,8 +154,8 @@ class UseStatsFragment : Fragment() {
             if (points < maxpoints) {
                 character.stats[3]--
                 binding.textAgi.text = "AGI: ${character.stats[3]}"
-                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
                 points++
+                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
             } else {
                 maxpoints(maxpoints)
             }
@@ -162,8 +164,8 @@ class UseStatsFragment : Fragment() {
             if (points < maxpoints) {
                 character.stats[4]--
                 binding.textDex.text = "DEX: ${character.stats[4]}"
-                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
                 points++
+                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
             } else {
                 maxpoints(maxpoints)
             }
@@ -172,8 +174,8 @@ class UseStatsFragment : Fragment() {
             if (points < maxpoints) {
                 character.stats[5]--
                 binding.textWis.text = "WIS: ${character.stats[5]}"
-                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
                 points++
+                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
             } else {
                 maxpoints(maxpoints)
             }
@@ -182,8 +184,8 @@ class UseStatsFragment : Fragment() {
             if (points < maxpoints) {
                 character.stats[6]--
                 binding.textLuck.text = "LUCK: ${character.stats[6]}"
-                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
                 points++
+                binding.availableStatPoints.text = "Available Stat Points: ${points}/${maxpoints}"
             } else {
                 maxpoints(maxpoints)
             }
@@ -201,7 +203,7 @@ class UseStatsFragment : Fragment() {
         alert.setTitle("Invalid")
         alert.setCancelable(true)
         alert.setPositiveButton("Okay",
-            DialogInterface.OnClickListener { dialog: DialogInterface?, which: Int ->
+            DialogInterface.OnClickListener { dialog: DialogInterface?, _ ->
                 dialog?.cancel()
             })
         val dialog = alert.create()
@@ -215,7 +217,7 @@ class UseStatsFragment : Fragment() {
         alert.setTitle("Invalid")
         alert.setCancelable(true)
         alert.setPositiveButton("Okay",
-            DialogInterface.OnClickListener { dialog: DialogInterface?, which: Int ->
+            DialogInterface.OnClickListener { dialog: DialogInterface?, _ ->
                 dialog?.cancel()
             })
         val dialog = alert.create()

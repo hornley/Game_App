@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.hornley.R
 import androidx.navigation.fragment.findNavController
 import com.example.hornley.database.model.Character
+import com.example.hornley.database.model.Item
 import com.example.hornley.database.viewmodel.CharacterViewModel
 import com.example.hornley.databinding.FragmentAddBinding
 

@@ -29,8 +29,8 @@ class ListAdapter(private var mUserViewModel: CharacterViewModel): RecyclerView.
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val character = userList[position]
-        holder.itemView.findViewById<TextView>(R.id.nameTextView).text = character.name
-        holder.itemView.findViewById<TextView>(R.id.txvClass).text = "(${character.characterClass} - Level: ${character.level})"
+        holder.itemView.findViewById<TextView>(R.id.txvItemName).text = character.name
+        holder.itemView.findViewById<TextView>(R.id.txvItemAmount).text = "(${character.characterClass} - Level: ${character.level})"
 
         holder.itemView.findViewById<ConstraintLayout>(R.id.rowLayout).setOnClickListener {
             val action = ListFragmentDirections.actionListFragmentToCharacterConfirmation(character)

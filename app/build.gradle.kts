@@ -1,6 +1,3 @@
-import com.android.build.api.dsl.Lint
-import com.android.build.api.dsl.LintOptions
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -42,6 +39,19 @@ android {
     buildFeatures {
         viewBinding = true
         buildConfig = true
+    }
+    sourceSets.getByName("main") {
+        res.setSrcDirs(listOf
+            (
+            "src/main/res/layouts/battle-menu",
+            "src/main/res/layouts/character-menu",
+            "src/main/res/layouts/game-menu",
+            "src/main/res/layouts/shop-menu",
+            "src/main/res/layouts/start-menu",
+            "src/main/res/layouts",
+            "src/main/res"
+            )
+        )
     }
 }
 

@@ -5,11 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.hornley.database.model.Character
 import com.example.hornley.database.viewmodel.CharacterViewModel
+import com.example.hornley.database.viewmodel.ItemViewModel
 import com.example.hornley.databinding.FragmentInventoryBinding
+import com.example.hornley.fragments.list.ListAdapter
 
 class InventoryFragment : Fragment() {
 
@@ -17,6 +24,7 @@ class InventoryFragment : Fragment() {
     private var _binding: FragmentInventoryBinding? = null
     private val binding get() = _binding!!
     private lateinit var mUserViewModel: CharacterViewModel
+    private lateinit var iUserViewModel: ItemViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,13 +33,18 @@ class InventoryFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentInventoryBinding.inflate(inflater, container, false)
         mUserViewModel = ViewModelProvider(this).get(CharacterViewModel::class.java)
+        iUserViewModel = ViewModelProvider(this).get(ItemViewModel::class.java)
         val character = args.character
-        activity?.setTitle(character.name)
+        (activity as? AppCompatActivity)?.supportActionBar?.title = "${character.name}'s Inventory"
 
-        binding.backtoMenu.setOnClickListener {
-            val action = InventoryFragmentDirections.actionInventoryFragmentToCharacterMenuFragment(character)
-            findNavController().navigate(action)
-        }
+        val adapter = InventoryAdapter(character)
+        val recyclerView = binding.inventoryList
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        iUserViewModel.itemReadAllData.observe(viewLifecycleOwner, Observer {item ->
+            adapter.setData(item)
+        })
 
         return binding.root
     }

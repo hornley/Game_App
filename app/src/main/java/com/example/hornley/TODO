@@ -1,0 +1,31 @@
+To-Do: December 2, 2023 - 02:33
+> Implement Update (character name)
+> Item Information and Buy XML files:
+- Item Equip and Un-equip
+> Fight
+> Default Data
+> Settings
+> Organize Layout
+> Menu for developers to add, update or remove data.
+
+Data to be added
+> Limited Items
+> Bosses
+> Unique Enemies
+> More skills, items, enemies and fights
+> Enemy healing and/or mechanics
+> Weaknesses and Resistance implementation (Battle function)
+*> Character:
+- Rank
+- Job
+- Power
+*> Item (when drops are introduced):
+- Item stats are random, affected by rarity, level and enemy
+- Attack Attributes - Map<Int, Double> (i.e. Fireball - {1: 1.0}, 100% Fire type)
+*> Enemy:
+- Ability to heal
+
+Major shit
+> Worlds
+> NPCs
+> Design/UI

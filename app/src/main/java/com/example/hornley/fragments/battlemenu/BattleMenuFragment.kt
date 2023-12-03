@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.hornley.database.model.Character
 import com.example.hornley.databinding.FragmentBattleMenuBinding
@@ -22,6 +23,12 @@ class BattleMenuFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentBattleMenuBinding.inflate(inflater, container, false)
         val character: Character = args.character
+        activity?.title = "Battle Menu"
+
+        binding.battleMenuBackButton.setOnClickListener {
+            val action = BattleMenuFragmentDirections.actionBattleMenuFragmentToGameFragment2(character.id)
+            findNavController().navigate(action)
+        }
 
         return binding.root
     }

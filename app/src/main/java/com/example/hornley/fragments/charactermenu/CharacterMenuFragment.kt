@@ -28,14 +28,13 @@ class CharacterMenuFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentCharacterMenuBinding.inflate(inflater, container, false)
         mUserViewModel = ViewModelProvider(this).get(CharacterViewModel::class.java)
-        activity?.setTitle("Character Menu")
+        activity?.title = "Character Menu"
 
         val character = args.character
 
         setDisplay(character)
 
         binding.useStatsButton.setOnClickListener {
-            character.statPoint = 500
             if (character.statPoint >= 1) {
                 val action = CharacterMenuFragmentDirections.actionCharacterMenuFragmentToUseStatsFragment(character)
                 findNavController().navigate(action)
@@ -45,7 +44,7 @@ class CharacterMenuFragment : Fragment() {
                 alert.setTitle("Unavailable stat points")
                 alert.setCancelable(true)
                 alert.setPositiveButton("Okay",
-                    DialogInterface.OnClickListener { dialog: DialogInterface?, which: Int ->
+                    DialogInterface.OnClickListener { dialog: DialogInterface?, _ ->
                         dialog?.cancel()
                     })
                 val dialog = alert.create()
@@ -54,8 +53,8 @@ class CharacterMenuFragment : Fragment() {
             }
         }
 
-        binding.backbutton.setOnClickListener {
-            val action = CharacterMenuFragmentDirections.actionCharacterMenuFragmentToGameFragment2(character.id)
+        binding.inventoryButton.setOnClickListener {
+            val action = CharacterMenuFragmentDirections.actionCharacterMenuFragmentToInventoryFragment(character)
             findNavController().navigate(action)
         }
 
@@ -87,6 +86,11 @@ class CharacterMenuFragment : Fragment() {
         statsName.text = "Vitality (VIT):\nStrength (STR):\nIntelligence (INT):\nAgility (AGI):\nDexterity" +
                 " (DEX):\nWisdom (WIS):\nLuck:\nCharisma:\nPhysical Defense:\nMagical Defense:\nConstitution:\nBalance:\n"
         statsDisplay.text = statsText
+        if (character.statPoint >= 1) {
+            binding.textStatPointsAvail.text = "Available Stat Points: ${character.statPoint}"
+        } else {
+            binding.useStatsButton.isEnabled = false
+        }
         binding.charDisplay.text = title
     }
 
