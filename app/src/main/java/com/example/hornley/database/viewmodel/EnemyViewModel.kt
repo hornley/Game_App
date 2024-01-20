@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 class EnemyViewModel(application: Application): AndroidViewModel(application) {
 
-    private val enemyReadAllData: LiveData<List<Enemy>>
+    val enemyReadAllData: LiveData<List<Enemy>>
     private val enemyRepository: EnemyRepository
 
     init {

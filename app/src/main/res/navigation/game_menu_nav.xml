@@ -17,8 +17,16 @@
             android:name="character"
             app:argType="com.example.hornley.database.model.Character" />
         <action
-            android:id="@+id/action_battleMenuFragment_to_fightFragment"
-            app:destination="@id/fightFragment" />
+            android:id="@+id/action_battleMenuFragment_to_enemyFragment"
+            app:destination="@id/enemyFragment" />
+        <argument
+            android:name="enemy"
+            app:argType="com.example.hornley.database.model.Enemy"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_battleMenuFragment_to_enemyFightFragment"
+            app:destination="@id/enemyFightFragment" />
     </fragment>
     <fragment
         android:id="@+id/characterMenuFragment"
@@ -114,18 +122,6 @@
             app:argType="com.example.hornley.database.model.Character" />
     </fragment>
     <fragment
-        android:id="@+id/fightFragment"
-        android:name="com.example.hornley.fragments.battlemenu.FightFragment"
-        android:label="fragment_fight"
-        tools:layout="@layout/fragment_fight" >
-        <action
-            android:id="@+id/action_fightFragment_to_battleMenuFragment"
-            app:destination="@id/battleMenuFragment" />
-        <argument
-            android:name="character"
-            app:argType="com.example.hornley.database.model.Character" />
-    </fragment>
-    <fragment
         android:id="@+id/itemBuyFragment"
         android:name="com.example.hornley.fragments.shopmenu.ItemBuyFragment"
         android:label="fragment_item_buy"
@@ -139,5 +135,32 @@
         <argument
             android:name="character"
             app:argType="com.example.hornley.database.model.Character" />
+    </fragment>
+    <fragment
+        android:id="@+id/enemyFragment"
+        android:name="com.example.hornley.fragments.battlemenu.EnemyFragment"
+        android:label="fragment_enemy"
+        tools:layout="@layout/fragment_enemy" >
+        <action
+            android:id="@+id/action_enemyFragment_to_battleMenuFragment"
+            app:destination="@id/battleMenuFragment" />
+        <argument
+            android:name="character"
+            app:argType="com.example.hornley.database.model.Character" />
+    </fragment>
+    <fragment
+        android:id="@+id/enemyFightFragment"
+        android:name="com.example.hornley.fragments.battlemenu.EnemyFightFragment"
+        android:label="fragment_enemy_fight"
+        tools:layout="@layout/fragment_enemy_fight" >
+        <action
+            android:id="@+id/action_enemyFightFragment_to_battleMenuFragment"
+            app:destination="@id/battleMenuFragment" />
+        <argument
+            android:name="character"
+            app:argType="com.example.hornley.database.model.Character" />
+        <argument
+            android:name="enemy"
+            app:argType="com.example.hornley.database.model.Enemy" />
     </fragment>
 </navigation>

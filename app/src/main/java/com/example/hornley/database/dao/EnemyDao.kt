@@ -9,7 +9,6 @@ import androidx.room.Query
 import androidx.room.Update
 import com.example.hornley.database.model.Enemy
 
-
 @Dao
 interface  EnemyDao {
 

@@ -34,10 +34,10 @@ class GameFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentGameBinding.inflate(inflater, container, false)
-        mUserViewModel = ViewModelProvider(this).get(CharacterViewModel::class.java)
-        eUserViewModel = ViewModelProvider(this).get(EnemyViewModel::class.java)
-        iUserViewModel = ViewModelProvider(this).get(ItemViewModel::class.java)
-        sUserViewModel = ViewModelProvider(this).get(SkillViewModel::class.java)
+        mUserViewModel = ViewModelProvider(this)[CharacterViewModel::class.java]
+        eUserViewModel = ViewModelProvider(this)[EnemyViewModel::class.java]
+        iUserViewModel = ViewModelProvider(this)[ItemViewModel::class.java]
+        sUserViewModel = ViewModelProvider(this)[SkillViewModel::class.java]
 
         val ID = arguments?.getInt("x")
         mUserViewModel.charReadAllData.observe(viewLifecycleOwner, Observer { characters ->
@@ -74,9 +74,9 @@ class GameFragment : Fragment() {
     }
 
 
-    fun addData() {
+    private fun addData() {
         val applicationContext = binding.root.context
-        val list = arrayListOf<String>("items", "skills", "enemies")
+        val list = arrayListOf("items", "skills", "enemies")
         var num = 0
         while (num < list.size) {
             val jsonData = applicationContext.resources.openRawResource(
@@ -102,7 +102,7 @@ class GameFragment : Fragment() {
 
     }
 
-    fun addSkills(SkillsDATA: JSONObject) {
+    private fun addSkills(SkillsDATA: JSONObject) {
         for (Class in SkillsDATA.keys().iterator()) {
             for (skills in SkillsDATA.getJSONObject(Class).keys().iterator()) {
                 val skillsData = SkillsDATA.getJSONObject(Class).getJSONArray(skills)
@@ -126,7 +126,7 @@ class GameFragment : Fragment() {
         }
     }
 
-    fun addItems(ItemsDATA: JSONObject) {
+    private fun addItems(ItemsDATA: JSONObject) {
         for (category in ItemsDATA.keys().iterator()) {
             for (subCategory in ItemsDATA.getJSONObject(category).keys().iterator()) {
                 for (item in ItemsDATA.getJSONObject(category).getJSONObject(subCategory).keys().iterator()) {
@@ -150,14 +150,14 @@ class GameFragment : Fragment() {
                         num += 2
                     }
 
-                    val item = Item(0, rarity, name, category, subCategory, cost, lvlReq, type, effects)
-                    iUserViewModel.addItem(item)
+                    val x = Item(0, rarity, name, category, subCategory, cost, lvlReq, type, effects)
+                    iUserViewModel.addItem(x)
                 }
             }
         }
     }
 
-    fun addEnemies(EnemiesDATA: JSONObject) {
+    private fun addEnemies(EnemiesDATA: JSONObject) {
         for (i in EnemiesDATA.keys().iterator()) {
             for (j in EnemiesDATA.getJSONObject(i).keys().iterator())
             {
@@ -170,7 +170,6 @@ class GameFragment : Fragment() {
                 val WeaknessesArray = DataArray.getJSONArray(1).getJSONArray(2)
 
                 val StatArray = DataArray.getJSONArray(1).getJSONArray(0)
-                val id: Int = j.toInt()
                 val name: String = DataArray.getString(0)
                 val vitality: Double = StatArray.getDouble(0)
                 val strength: Double = StatArray.getDouble(1)
@@ -196,9 +195,8 @@ class GameFragment : Fragment() {
                     weaknesses.add(WeaknessesArray.getDouble(num))
                     num++
                 }
-//                Log.d("TAG_DATA", ""+ DataArray.getJSONArray(1).getJSONArray(1).length())
 
-                val enemy = Enemy(id, name, vitality, strength, intelligence, agility, dexterity, wisdom, pDef, mDef, phyPenetration, magPenetration, criticalChance, criticalDamage, expGain, rewards, type, skills, weaknesses)
+                val enemy = Enemy(0, name, vitality, strength, intelligence, agility, dexterity, wisdom, pDef, mDef, phyPenetration, magPenetration, criticalChance, criticalDamage, expGain, rewards, type, skills, weaknesses)
                 eUserViewModel.addEnemy(enemy)
             }
         }
